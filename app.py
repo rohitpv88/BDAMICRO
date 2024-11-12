@@ -12,7 +12,7 @@ def predict(input_data):
     else:
         return 'Affected'
 def main():
-    st.title('Liver Disease Predictor')
+    st.title('Liver Disease Prediction')
     Age= st.text_input('Age')
     Bilirubin= st.text_input('Bilirubin')
     AlkalinePhosphotase=st.text_input('Alkaline Phosphotase')
