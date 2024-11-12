@@ -1,46 +1,29 @@
 import numpy as np
 import pickle
 import streamlit as st
-
-loading_model = pickle.load(open('diabetics_prediction.pkl','rb'))
-
-
-def dia_prediction(input_data):
-    in_data_array = np.asarray(input_data)
-
-    input_data_reshape = in_data_array.reshape(1, -1)
-
-    prediction = loading_model.predict(input_data_reshape)
+loading_model=pickle.load(open('diabetics_prediction.pkl','rb'))
+def predict(input_data):
+    in_data_array=np.asarray(input_data)
+    input_data_reshape=in_data_array.reshape(1,-1)
+    prediction=loading_model.predict(input_data_reshape)
     print(prediction)
-
-    if(prediction[0] == 0):
-        return 'The person is not diabetic'
+    if(prediction[0]==0):
+        return 'Not Affected'
     else:
-        return 'The person is diabetic'
-    
-
-
-
+        return 'Affected'
 def main():
-    st.title('Diabetics Predictor')
-
-    Pregnancies = st.text_input('Enter the Pregnancies')
-    Glucose = st.text_input('Enter the Glucode Level')
-    BloodPressure = st.text_input('Enter the BloodPressure')
-    SkinThickness = st.text_input('Enter the SkinThickness')
-    Insulin = st.text_input('Enter the Insulin Level')
-    BMI = st.text_input('Enter the BMI')
-    DiabetesPedigreeFunction = st.text_input('Enter the DiabetesPedigreeFunction')
-    Age = st.text_input('Enter the Age')
-
+    st.title('Liver Disease Predictor')
+    Age= st.text_input('Age')
+    Bilirubin= st.text_input('Bilirubin')
+    AlkalinePhosphotase=st.text_input('Alkaline Phosphotase')
+    AlamineAminotransferase=st.text_input('Alamine Aminotransferase')
+    AspartateAminotransferase=st.text_input('Aspartate Aminotransferase')
+    Protiens=st.text_input('Protiens')
+    Albumin=st.text_input('Albumin')
+    ABR=st.text_input('Albumin and Globulin Ratio')
     diagnosis = ' '
-
-    if st.button("Check Diabetes"):
-        diagnosis = dia_prediction([Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age])
-
+    if st.button("Predict"):
+        diagnosis = predict([Age,Bilirubin,AlkalinePhosphotase,AlamineAminotransferase,AspartateAminotransferase,Protiens,Albumin,ABR])
     st.success(diagnosis)
-
-
-
 if __name__  == '__main__':
     main()
