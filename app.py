@@ -1,7 +1,7 @@
 import numpy as np
 import pickle
 import streamlit as st
-loading_model=pickle.load(open('diabetics_prediction.pkl','rb'))
+loading_model=pickle.load(open('liver.pkl','rb'))
 def predict(input_data):
     in_data_array=np.asarray(input_data)
     input_data_reshape=in_data_array.reshape(1,-1)
